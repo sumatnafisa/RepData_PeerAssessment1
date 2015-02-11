@@ -10,8 +10,9 @@ output:
 
 #####install "ggplot2" and "reshape2" packages.
 #####Downloaded activity.csv in same directory
+```{r}
 activity <- read.csv("activity.csv")
-
+```{r, echo=true}
 
 
 
