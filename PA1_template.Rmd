@@ -57,5 +57,17 @@ impMedian <- median(castedActivity$steps)
 The mean is 10765.64 and the median is 10762
 
 ## Are there differences in activity patterns between weekdays and weekends?
+wd <- !(weekdays(as.Date(NaResolvedActivity$date)) %in% c('Saturday','Sunday'))
+wdwe <- c("", "")
+for (i in 1:length(wd)) {
+  if (wd[i]) {wdwe[i] <- "Weekday"} else {wdwe[i] <- "Weekend"}
+}
+NaResolvedActivity[, "dayType"] <- factor(wdwe)
+p <- ggplot(NaResolvedActivity, aes(x=interval, y=steps)) + geom_line()
+melted <- melt(NaResolvedActivity, id=c("interval", "dayType"), na.rm=TRUE, measure.vars="steps")
+casted <- dcast(melted, interval + dayType ~ variable, mean)
+p <- ggplot(casted, aes(x=interval, y=steps)) + geom_line() + ylab("Number of Steps")
+p + facet_wrap(~ dayType, ncol=1)
+
 
 
