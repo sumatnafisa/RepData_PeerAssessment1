@@ -12,7 +12,7 @@ output:
 #####Downloaded activity.csv in same directory
 ```{r}
 activity <- read.csv("activity.csv")
-```{r, echo=true}
+```
 
 
 
@@ -23,26 +23,33 @@ castedActivity <- dcast(meltedActivity, date ~ variable, sum)
 hist(castedActivity$steps)
 actMean <- format(round(mean(castedActivity$steps), 2), nsmall = 2)
 actMedian <- median(castedActivity$steps)
-```{r, echo=true}
+```
 
 
 #####The mean is 10766.19 and the median is 10765.
 
 
 ##### What is the average daily activity pattern?
+```{r}
 meltedInterval <- melt(activity, id=c("interval"), na.rm=TRUE, measure.vars="steps")
 castedInterval <- dcast(meltedInterval, interval ~ variable, mean)
 plot( castedInterval$interval, castedInterval$steps, type="l")
 maxRow <- castedInterval[castedInterval$steps==max(castedInterval$steps),]
+```
+
 #####The maximum number of steps is 206.1698 at time interval 835.
 
 
 
 ##### Imputing missing values
+```{r}
 x <- activity$steps
 x1 <- length(which(is.na(x)))
+```
+
 
 ##### There are 2304 missing values. I assigned the average number of steps for each interval into those intervals with NA's
+```{r}
 activityNa <- is.na(activity$steps)
 castedIntervalAdj <- cbind(castedInterval, as.integer(round(castedInterval$steps)))
 nonNaActivity <- activity[!activityNa,]
@@ -58,9 +65,12 @@ hist(castedActivity$steps)
 
 impMean <- format(round(mean(castedActivity$steps), 2), nsmall = 2)
 impMedian <- median(castedActivity$steps)
-The mean is 10765.64 and the median is 10762
+```
+
+#####The mean is 10765.64 and the median is 10762
 
 ##### Are there differences in activity patterns between weekdays and weekends?
+```{r}
 wd <- !(weekdays(as.Date(NaResolvedActivity$date)) %in% c('Saturday','Sunday'))
 wdwe <- c("", "")
 for (i in 1:length(wd)) {
@@ -72,5 +82,4 @@ melted <- melt(NaResolvedActivity, id=c("interval", "dayType"), na.rm=TRUE, meas
 casted <- dcast(melted, interval + dayType ~ variable, mean)
 p <- ggplot(casted, aes(x=interval, y=steps)) + geom_line() + ylab("Number of Steps")
 p + facet_wrap(~ dayType, ncol=1)
-```{r, echo=true}
-
+```
