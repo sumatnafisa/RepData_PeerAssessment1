@@ -12,16 +12,19 @@ output:
 #####Downloaded activity.csv in same directory
 ```{r}
 activity <- read.csv("activity.csv")
-
+```{r, echo=true}
 
 
 
 ##### What is mean total number of steps taken per day?
+```{r}
 meltedActivity <- melt(activity, id=c("date"), na.rm=TRUE, measure.vars="steps")
 castedActivity <- dcast(meltedActivity, date ~ variable, sum)
 hist(castedActivity$steps)
 actMean <- format(round(mean(castedActivity$steps), 2), nsmall = 2)
 actMedian <- median(castedActivity$steps)
+```{r, echo=true}
+
 
 #####The mean is 10766.19 and the median is 10765.
 
