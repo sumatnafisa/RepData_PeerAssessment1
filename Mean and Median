@@ -6,3 +6,6 @@ activity <- read.csv("activity.csv")
 meltedActivity <- melt(activity, id=c("date"), na.rm=TRUE, measure.vars="steps")
 castedActivity <- dcast(meltedActivity, date ~ variable, sum)
 hist(castedActivity$steps)
+actMean <- format(round(mean(castedActivity$steps), 2), nsmall = 2)
+actMedian <- median(castedActivity$steps)
+
