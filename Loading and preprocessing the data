@@ -1,0 +1,4 @@
+#Loading and Processing of the data 
+# Installed "ggplot2" and "reshape2"
+#Downloaded activity.csv in same directory
+activity <- read.csv("activity.csv")
