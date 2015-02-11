@@ -8,8 +8,8 @@ output:
 
 ## Loading and preprocessing the data
 
-#install "ggplot2" and "reshape2" packages.
-##Downloaded activity.csv in same directory
+###install "ggplot2" and "reshape2" packages.
+###Downloaded activity.csv in same directory
 activity <- read.csv("activity.csv")
 
 
@@ -22,7 +22,7 @@ hist(castedActivity$steps)
 actMean <- format(round(mean(castedActivity$steps), 2), nsmall = 2)
 actMedian <- median(castedActivity$steps)
 
-#The mean is 10766.19 and the median is 10765.
+###The mean is 10766.19 and the median is 10765.
 
 
 ## What is the average daily activity pattern?
