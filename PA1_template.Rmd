@@ -8,6 +8,9 @@ output:
 
 ## Loading and preprocessing the data
 
+#install "ggplot2" and "reshape2" packages.
+#
+
 
 
 ## What is mean total number of steps taken per day?
