@@ -24,8 +24,6 @@ hist(castedActivity$steps)
 actMean <- format(round(mean(castedActivity$steps), 2), nsmall = 2)
 actMedian <- median(castedActivity$steps)
 ```
-
-
 #####The mean is 10766.19 and the median is 10765.
 
 
@@ -36,7 +34,6 @@ castedInterval <- dcast(meltedInterval, interval ~ variable, mean)
 plot( castedInterval$interval, castedInterval$steps, type="l")
 maxRow <- castedInterval[castedInterval$steps==max(castedInterval$steps),]
 ```
-
 #####The maximum number of steps is 206.1698 at time interval 835.
 
 
@@ -46,8 +43,6 @@ maxRow <- castedInterval[castedInterval$steps==max(castedInterval$steps),]
 x <- activity$steps
 x1 <- length(which(is.na(x)))
 ```
-
-
 ##### There are 2304 missing values. I assigned the average number of steps for each interval into those intervals with NA's
 ```{r}
 activityNa <- is.na(activity$steps)
@@ -66,7 +61,6 @@ hist(castedActivity$steps)
 impMean <- format(round(mean(castedActivity$steps), 2), nsmall = 2)
 impMedian <- median(castedActivity$steps)
 ```
-
 #####The mean is 10765.64 and the median is 10762
 
 ##### Are there differences in activity patterns between weekdays and weekends?
