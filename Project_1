@@ -1,0 +1,8 @@
+#Loading and Processing the data 
+#Installed "ggplot2" and "reshape2" packages.
+#Reading the activty.csv" file.
+activity <- read.csv("activity.csv")
+#calculating mean and median with histogram
+meltedActivity <- melt(activity, id=c("date"), na.rm=TRUE, measure.vars="steps")
+castedActivity <- dcast(meltedActivity, date ~ variable, sum)
+hist(castedActivity$steps)
