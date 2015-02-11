@@ -6,39 +6,39 @@ output:
 ---
 
 
-## Loading and preprocessing the data
+#### Loading and preprocessing the data
 
-###install "ggplot2" and "reshape2" packages.
-###Downloaded activity.csv in same directory
+#####install "ggplot2" and "reshape2" packages.
+#####Downloaded activity.csv in same directory
 activity <- read.csv("activity.csv")
 
 
 
 
-## What is mean total number of steps taken per day?
+##### What is mean total number of steps taken per day?
 meltedActivity <- melt(activity, id=c("date"), na.rm=TRUE, measure.vars="steps")
 castedActivity <- dcast(meltedActivity, date ~ variable, sum)
 hist(castedActivity$steps)
 actMean <- format(round(mean(castedActivity$steps), 2), nsmall = 2)
 actMedian <- median(castedActivity$steps)
 
-###The mean is 10766.19 and the median is 10765.
+#####The mean is 10766.19 and the median is 10765.
 
 
-## What is the average daily activity pattern?
+##### What is the average daily activity pattern?
 meltedInterval <- melt(activity, id=c("interval"), na.rm=TRUE, measure.vars="steps")
 castedInterval <- dcast(meltedInterval, interval ~ variable, mean)
 plot( castedInterval$interval, castedInterval$steps, type="l")
 maxRow <- castedInterval[castedInterval$steps==max(castedInterval$steps),]
-###The maximum number of steps is 206.1698 at time interval 835.
+#####The maximum number of steps is 206.1698 at time interval 835.
 
 
 
-## Imputing missing values
+##### Imputing missing values
 x <- activity$steps
 x1 <- length(which(is.na(x)))
 
-### There are 2304 missing values. I assigned the average number of steps for each interval into those intervals with NA's
+##### There are 2304 missing values. I assigned the average number of steps for each interval into those intervals with NA's
 activityNa <- is.na(activity$steps)
 castedIntervalAdj <- cbind(castedInterval, as.integer(round(castedInterval$steps)))
 nonNaActivity <- activity[!activityNa,]
@@ -56,7 +56,7 @@ impMean <- format(round(mean(castedActivity$steps), 2), nsmall = 2)
 impMedian <- median(castedActivity$steps)
 The mean is 10765.64 and the median is 10762
 
-## Are there differences in activity patterns between weekdays and weekends?
+##### Are there differences in activity patterns between weekdays and weekends?
 wd <- !(weekdays(as.Date(NaResolvedActivity$date)) %in% c('Saturday','Sunday'))
 wdwe <- c("", "")
 for (i in 1:length(wd)) {
