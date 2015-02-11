@@ -12,7 +12,7 @@ output:
 #####Downloaded activity.csv in same directory
 ```{r}
 activity <- read.csv("activity.csv")
-```{r, echo=true}
+
 
 
 
@@ -69,6 +69,5 @@ melted <- melt(NaResolvedActivity, id=c("interval", "dayType"), na.rm=TRUE, meas
 casted <- dcast(melted, interval + dayType ~ variable, mean)
 p <- ggplot(casted, aes(x=interval, y=steps)) + geom_line() + ylab("Number of Steps")
 p + facet_wrap(~ dayType, ncol=1)
-
-
+```{r, echo=true}
 
