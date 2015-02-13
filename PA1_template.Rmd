@@ -4,17 +4,21 @@ output:
   html_document:
     keep_md: true
 ---
+Installing packages and libraries for the code.
 
-
-#### Loading and preprocessing the data
-
-#####install "ggplot2" and "reshape2" packages.
-#####Downloaded activity.csv in same directory
 ```{r}
-activity <- read.csv("activity.csv")
+install.packages("reshape2", repos='http://cran.us.r-project.org')
+install.packages("ggplot2", repos='http://cran.us.r-project.org')
+library("reshape2")
+library("ggplot2")
 ```
 
+Download activity.csv file
 
+
+```{r}
+activity <- read.csv("C:/Users/Sumat/Desktop/Reproducible Research/activity.csv")
+```
 
 ##### What is mean total number of steps taken per day?
 ```{r}
